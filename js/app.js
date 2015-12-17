@@ -150,6 +150,7 @@ app.directive('obMaterialCalendar', function(){
 				$scope.currentDate();
 				$timeout(function(){
 					$scope.showYear = true;	
+					init();
 				});
 			}
 
