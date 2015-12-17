@@ -61,6 +61,25 @@ html,body {
 	color: #fff;
 	font-weight: 100;
     line-height: 100px;
+    height: 100px;
+}
+
+.title .arrow-left {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+
+.title .arrow-right {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+.title .year {
+    text-align: center;
 }
 
 .title.active {

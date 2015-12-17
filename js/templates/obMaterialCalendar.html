@@ -1,0 +1,44 @@
+<div class="calendar-container transition">
+		
+		<div class="view-year">
+			<div class="title transition">
+				<div class="arrow-left" ng-click="selectYear(-1)">
+					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+					    <path fill="#FFFFFF" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+					</svg>
+				</div>
+				<div class="year animated bounceIn" ng-show="showYear">{{date.year}}</div>
+				<div class="arrow-right" ng-click="selectYear(1)">
+					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+					    <path fill="#FFFFFF" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="grid">
+				<div id="{{locale.mesesIds[$index]}}" class="month-item transition" 
+					ng-repeat="m in locale.meses"
+					ng-click="selectMonth($index)"><span class="centred" ng-bind="locale.mesesAbr[$index]"></span></div>
+			</div>
+		</div>
+		
+		<div ng-init="currentDate()"></div>
+		
+		<div id="{{locale.mesesIds[$index]}}-month" class="view-month" ng-repeat="m in locale.meses">
+			<div class="title transition">
+				<div class="go-back-month transition"><span></span></div>
+				<span class="month-name" ng-bind="m"></span>
+				<span class="date-year" ng-bind="date.year"></span>
+			</div>
+			<div class="grid">
+				<div class="row week">
+					<div class="cell" ng-repeat="d in locale.diasMin"><span>{{d}}</span></div>
+				</div>
+				<div class="row" ng-repeat="week in getWeeks4Month($index)">
+					<div class="cell {{ day > 0 ? 'clickable' : 'past' }}" ng-repeat="day in week">
+						<span>{{ Math.abs(day) }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
