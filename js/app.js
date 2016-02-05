@@ -44,6 +44,7 @@ var init = function(){
 		ink.css({top: y+'px', left: x+'px'}).addClass("animate");
 
 		$(month).delay(500).fadeIn();
+		console.log('llama')
 		setTimeout(function(){
 			$(month).children('.title').removeClass('active');
 		}, 500);
@@ -62,14 +63,13 @@ var init = function(){
 		if(parent.find(".ink").length == 0)
 			parent.prepend("<span style='background-color:" + $(this).parent().parent().parent().children('.title').css('background-color') + "' class='ink'></span>");
 
-		ink = parent.find(".ink");
+		ink = parent.parent().find(".ink");
 
 
 
 
 		if(!ink.height() && !ink.width())
 		{
-
 			d = Math.max(parent.outerWidth(), parent.outerHeight());
 			ink.css({height: d, width: d});
 		}
@@ -82,12 +82,18 @@ var init = function(){
 
 		ink.css({top: y+'px', left: x+'px'}).addClass("animate");
 
-		$('.view-month').prepend("<div class='view-day'><div class='title active transition'><div onclick='gobackDay();' class='go-back-day transition'><span></span></div>" + "<span class='day-name'>" + day + "</span> " + "<span class='month-name small'>" + month + "</span>" + " <span class='date-year'>2015</span></div><div class='grid'><p class='centred'>//TODO: Insertar cositas aqui :33</p></div></div>");
+		// $('.view-month').prepend("<div class='view-day'><div class='title active transition'><div onclick='gobackDay();' class='go-back-day transition'><span></span></div>" + "<span class='day-name'>" + day + "</span> " + "<span class='month-name small'>" + month + "</span>" + " <span class='date-year'>2015</span></div><div class='grid'><p class='centred'>//TODO: Insertar cositas aqui :33</p></div></div>");
 
-		$('.view-day').delay(500).fadeIn();
+		parent.fadeOut();
 		setTimeout(function(){
-			$('.view-day').children('.title').removeClass('active');
+			$('.view-month').children('.title').addClass('active');
 		}, 500);
+		setTimeout(function(){
+			$('.view-year').children('.ink').removeClass('animate');
+		}, 500);
+		setTimeout(function(){
+			$('.view-year').children('.ink').remove();
+		}, 1000);		
 
 	});
 
@@ -110,7 +116,7 @@ app.directive('obMaterialCalendar', function(){
 		restrict: 'E',
 		templateUrl: 'js/templates/obMaterialCalendar.html',
 		scope: {
-			
+			ngModel : '='
 		},
 		controller: ['$scope', '$timeout' , function($scope, $timeout){
 			var d = new Date();
@@ -173,6 +179,14 @@ app.directive('obMaterialCalendar', function(){
 					}
 				}
 				return arr;
+			}
+
+			$scope.selectDate = function(d, bool){
+				if (bool) {
+					var d = new Date($scope.date.year, $scope.date.month, d);
+					$scope.ngModel = d;
+					// console.log(d);
+				}
 			}
 
 			

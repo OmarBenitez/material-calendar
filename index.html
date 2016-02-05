@@ -12,8 +12,9 @@
 	<script src="js/moment.js"></script>
 </head>
 <body cz-shortcut-listen="true" ng-app="demoApp">
-	
-	<ob-material-calendar />
+	<h1>{{dateSelected}}</h1>
+	<ob-material-calendar ng-model="dateSelected">
+	</ob-material-calendar>
 	
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>

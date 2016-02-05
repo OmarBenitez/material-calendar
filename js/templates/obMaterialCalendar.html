@@ -34,7 +34,7 @@
 					<div class="cell" ng-repeat="d in locale.diasMin"><span>{{d}}</span></div>
 				</div>
 				<div class="row" ng-repeat="week in getWeeks4Month($index)">
-					<div class="cell {{ day > 0 ? 'clickable' : 'past' }}" ng-repeat="day in week">
+					<div class="cell {{ day > 0 ? 'clickable' : 'past' }}" ng-repeat="day in week"  ng-click="selectDate(day, day > 0)">
 						<span>{{ Math.abs(day) }}</span>
 					</div>
 				</div>
